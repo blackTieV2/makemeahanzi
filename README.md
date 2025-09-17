@@ -13,6 +13,48 @@ can see the project output at the [demo site](https://makemeahanzi.herokuapp.com
 where you can look up a characters by drawing them. You can also download the
 data for use in your own site or app.
 
+## New: Make Me a Hanzi Companion web app
+
+This fork adds a self-contained learning tool aimed at helping students read
+Chinese characters quickly. The app lets you type or photograph characters and
+immediately see pinyin, definitions, stroke counts, and stroke-order animations
+powered by the original Make Me a Hanzi dataset. Audio playback uses your
+browser's built-in speech synthesis (no external API keys required).
+
+### Quick start
+
+1. Install dependencies (Python 3.9+):
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+2. Launch the FastAPI server:
+
+   ```bash
+   uvicorn app.main:app --reload
+   ```
+
+3. Visit [http://localhost:8000](http://localhost:8000) in your browser. The
+   home page provides two workflows:
+
+   - **Character lookup:** enter text to retrieve pinyin, definitions, and
+     stroke animations for each unique Chinese character detected.
+   - **Photo recognition:** upload an image containing printed characters. OCR
+     runs locally using [RapidOCR](https://github.com/RapidAI/RapidOCR) and the
+     recognized characters are displayed with the same rich details.
+
+### Tips
+
+- The animated stroke-order SVGs live in the `svgs/` directory and are served
+  directly by the app. If you remove files from that folder the animations will
+  no longer appear for the corresponding characters.
+- Speech synthesis quality depends on the voices provided by your operating
+  system or browser. Most desktop browsers ship with Mandarin voices, but if
+  none are available the "Play sound" button will display a warning.
+- RapidOCR performs best on clear, high-contrast photos. If recognition results
+  are empty, try cropping the image or increasing brightness before uploading.
+
 See the [project site](https://www.skishore.me/makemeahanzi) for general
 information and updates on the project.
 
