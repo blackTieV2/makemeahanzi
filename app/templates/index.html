@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Make Me a Hanzi Companion</title>
+    <link rel="stylesheet" href="/static/css/styles.css" />
+</head>
+<body>
+    <header class="hero">
+        <div class="container">
+            <h1>Make Me a Hanzi Companion</h1>
+            <p>
+                Type a Chinese character or upload a photo to see pinyin, definitions,
+                and stroke order animations sourced from the open Make Me a Hanzi data set.
+            </p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="panel">
+            <h2>Character workspace</h2>
+            <form id="query-form" class="form">
+                <label for="query-input">Enter Chinese text or tone-insensitive pinyin</label>
+                <div class="form-row">
+                    <input
+                        id="query-input"
+                        type="text"
+                        autocomplete="off"
+                        placeholder="Try：是的、愛，or shi"
+                    />
+                    <button type="submit">Search</button>
+                </div>
+                <p class="form-help">
+                    Paste characters to explore each one, or type pinyin such as <code>shi</code> or <code>shì</code>
+                    to see matching options.
+                </p>
+            </form>
+
+            <div class="workspace__candidates">
+                <p class="workspace__candidates-label">Characters</p>
+                <div id="candidate-list" class="workspace__candidate-list" role="listbox" aria-live="polite"></div>
+            </div>
+
+            <div id="workspace" class="workspace">
+                <div id="workspace-placeholder" class="empty-state">
+                    Type Chinese characters, enter pinyin, or upload a photo to begin.
+                </div>
+                <article id="workspace-card" class="character-card" hidden aria-live="polite">
+                    <div class="character-card__head">
+                        <span id="workspace-glyph" class="character-card__glyph" aria-hidden="true"></span>
+                        <div id="workspace-meta" class="character-card__meta"></div>
+                    </div>
+                    <div id="workspace-pinyin" class="character-card__pinyin"></div>
+                    <p id="workspace-definition" class="character-card__definition"></p>
+                    <div id="workspace-details" class="character-card__meta"></div>
+                    <div id="stroke-viewer" class="character-card__svg" role="img" aria-label="Stroke order"></div>
+                    <div class="character-card__actions workspace__actions">
+                        <button id="btn-play" type="button">Play</button>
+                        <button id="btn-step" type="button">Step</button>
+                        <button id="btn-replay" type="button">Replay</button>
+                        <button id="sound-button" type="button">Play sound</button>
+                        <button id="copy-button" type="button">Copy character</button>
+                    </div>
+                </article>
+            </div>
+
+            <form id="ocr-form" class="form workspace__ocr" enctype="multipart/form-data">
+                <label for="ocr-input">Or recognize characters from a photo</label>
+                <div class="form-row">
+                    <input id="ocr-input" type="file" accept="image/*" />
+                    <button type="submit">Recognize</button>
+                </div>
+                <p class="form-help">We run offline OCR using RapidOCR (no cloud services required).</p>
+            </form>
+            <div id="ocr-feedback" class="feedback" aria-live="polite"></div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>
+                Built on top of the community-maintained
+                <a href="https://github.com/skishore/makemeahanzi" target="_blank" rel="noopener noreferrer">Make Me a Hanzi</a>
+                project. Audio playback uses your browser's built-in speech synthesis.
+            </p>
+        </div>
+    </footer>
+    <script src="/static/js/main.js" defer></script>
+</body>
+</html>
