@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Make Me a Hanzi Companion</title>
+    <link rel="stylesheet" href="/static/css/styles.css" />
+</head>
+<body>
+    <header class="hero">
+        <div class="container">
+            <h1>Make Me a Hanzi Companion</h1>
+            <p>
+                Type a Chinese character or upload a photo to see pinyin, definitions,
+                and stroke order animations sourced from the open Make Me a Hanzi data set.
+            </p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="panel">
+            <h2>1. Look up a character</h2>
+            <form id="lookup-form" class="form">
+                <label for="lookup-input">Enter Chinese text</label>
+                <div class="form-row">
+                    <input id="lookup-input" type="text" autocomplete="off" placeholder="例如：你好" />
+                    <button type="submit">Look up</button>
+                </div>
+                <p class="form-help">We will analyze unique Chinese characters and show their details.</p>
+            </form>
+            <div id="lookup-results" class="results"></div>
+
+            <article id="character-detail" class="character-card" hidden>
+                <div class="character-card__head">
+                    <span id="detail-glyph" class="character-card__glyph" aria-hidden="true"></span>
+                    <div id="detail-meta" class="character-card__meta"></div>
+                </div>
+                <div id="detail-pinyin" class="character-card__pinyin" aria-label="Pinyin pronunciations"></div>
+                <p id="detail-definition" class="character-card__definition"></p>
+                <div id="detail-extra" class="character-card__meta"></div>
+                <div id="detail-svg" class="character-card__svg" role="img" aria-label=""></div>
+                <div class="controls character-card__actions">
+                    <button id="btn-play" class="btn btn-red" aria-label="Play animation">Play</button>
+                    <button id="btn-step" class="btn btn-red" aria-label="Step one stroke">Step</button>
+                    <button id="btn-speak" class="btn btn-red">Play sound</button>
+                    <button id="btn-copy" class="btn btn-red">Copy character</button>
+                </div>
+            </article>
+        </section>
+
+        <section class="panel">
+            <h2>2. Recognize from a photo</h2>
+            <form id="ocr-form" class="form" enctype="multipart/form-data">
+                <label for="ocr-input">Upload an image containing Chinese characters</label>
+                <div class="form-row">
+                    <input id="ocr-input" type="file" accept="image/*" />
+                    <button type="submit">Recognize</button>
+                </div>
+                <p class="form-help">We run offline OCR using RapidOCR (no cloud services required).</p>
+            </form>
+            <div id="ocr-feedback" class="feedback" aria-live="polite"></div>
+            <div id="ocr-results" class="results"></div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>
+                Built on top of the community-maintained
+                <a href="https://github.com/skishore/makemeahanzi" target="_blank" rel="noopener noreferrer">Make Me a Hanzi</a>
+                project. Audio playback uses your browser's built-in speech synthesis.
+            </p>
+        </div>
+    </footer>
+    <script src="/static/js/main.js" defer></script>
+</body>
+</html>
